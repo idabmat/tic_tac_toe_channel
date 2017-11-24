@@ -2,8 +2,6 @@ defmodule TicTacToeChannelWeb.GameChannel do
   use TicTacToeChannelWeb, :channel
 
   def join("game:new", _, socket) do
-    {:ok, pid} = TicTacToe.new_game()
-    socket = socket |> assign(:game_pid, pid)
     {:ok, socket}
   end
 
@@ -25,8 +23,14 @@ defmodule TicTacToeChannelWeb.GameChannel do
     {:noreply, socket}
   end
 
+  def handle_in("new_game", "notakto", socket) do
+    {:ok, pid} = TicTacToe.new_game(:notakto)
+    socket = socket |> assign(:game_pid, pid)
+    handle_in("get_state", nil, socket)
+  end
+
   def handle_in("new_game", _, socket) do
-    {:ok, pid} = TicTacToe.new_game()
+    {:ok, pid} = TicTacToe.new_game(:original)
     socket = socket |> assign(:game_pid, pid)
     handle_in("get_state", nil, socket)
   end
