@@ -23,8 +23,8 @@ defmodule TicTacToeChannelWeb.GameChannel do
     {:noreply, socket}
   end
 
-  def handle_in("new_game", "notakto", socket) do
-    {:ok, pid} = TicTacToe.new_game(:notakto)
+  def handle_in("new_game", game_mode, socket) when game_mode in ["notakto", "misere"] do
+    {:ok, pid} = TicTacToe.new_game(String.to_atom(game_mode))
     socket = socket |> assign(:game_pid, pid)
     handle_in("get_state", nil, socket)
   end
