@@ -44,6 +44,17 @@ defmodule TicTacToeChannelWeb.GameChannelTest do
     ]
   end
 
+  test "get a new misere game", %{socket: socket} do
+    push(socket, "new_game", "misere")
+    assert_push "game_state", %{board: board, game_mode: game_mode}
+    assert board == [
+      [nil, nil, nil],
+      [nil, nil, nil],
+      [nil, nil, nil]
+    ]
+    assert game_mode == :misere
+  end
+
   test "get a new notakto game", %{socket: socket} do
     push(socket, "new_game", "notakto")
     assert_push "game_state", %{board: board, game_mode: game_mode}
