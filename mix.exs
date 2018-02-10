@@ -35,7 +35,7 @@ defmodule TicTacToeChannel.Mixfile do
       {:phoenix, "~> 1.3.0"},
       {:phoenix_pubsub, "~> 1.0"},
       {:gettext, "~> 0.11"},
-      {:tic_tac_toe, "~> 1.1.2"},
+      {:tic_tac_toe, "~> 1.1.3"},
       {:cowboy, "~> 1.0"}
     ]
   end
