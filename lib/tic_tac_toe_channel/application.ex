@@ -9,7 +9,7 @@ defmodule TicTacToeChannel.Application do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(TicTacToeChannelWeb.Endpoint, []),
+      supervisor(TicTacToeChannelWeb.Endpoint, [])
       # Start your own worker by calling: TicTacToeChannel.Worker.start_link(arg1, arg2, arg3)
       # worker(TicTacToeChannel.Worker, [arg1, arg2, arg3]),
     ]

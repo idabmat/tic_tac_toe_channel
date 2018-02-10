@@ -28,8 +28,9 @@ defmodule TicTacToeChannelWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/tic_tac_toe_channel_web/templates",
-                        namespace: TicTacToeChannelWeb
+      use Phoenix.View,
+        root: "lib/tic_tac_toe_channel_web/templates",
+        namespace: TicTacToeChannelWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
