@@ -21,7 +21,7 @@ defmodule TicTacToeChannelWeb do
     quote do
       use Phoenix.Controller, namespace: TicTacToeChannelWeb
       import Plug.Conn
-      import TicTacToeChannelWeb.Router.Helpers
+      alias TicTacToeChannelWeb.Router.Helpers, as: Routes
       import TicTacToeChannelWeb.Gettext
     end
   end
@@ -35,7 +35,7 @@ defmodule TicTacToeChannelWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
 
-      import TicTacToeChannelWeb.Router.Helpers
+      alias TicTacToeChannelWeb.Router.Helpers, as: Routes
       import TicTacToeChannelWeb.ErrorHelpers
       import TicTacToeChannelWeb.Gettext
     end
