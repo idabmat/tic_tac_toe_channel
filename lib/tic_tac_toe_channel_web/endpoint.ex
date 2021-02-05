@@ -1,7 +1,7 @@
 defmodule TicTacToeChannelWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :tic_tac_toe_channel
 
-  socket("/socket", TicTacToeChannelWeb.UserSocket)
+  socket("/socket", TicTacToeChannelWeb.UserSocket, websocket: true)
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -28,7 +28,7 @@ defmodule TicTacToeChannelWeb.Endpoint do
     Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Jason
   )
 
   plug(Plug.MethodOverride)

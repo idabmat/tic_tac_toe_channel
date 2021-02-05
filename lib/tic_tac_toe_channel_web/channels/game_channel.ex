@@ -7,19 +7,19 @@ defmodule TicTacToeChannelWeb.GameChannel do
 
   def handle_in("get_state", _, socket) do
     game = socket.assigns.game_pid |> TicTacToe.game_state()
-    push(socket, "game_state", game)
+    push(socket, "game_state", Map.from_struct(game))
     {:noreply, socket}
   end
 
   def handle_in("player_move", position, socket) do
     game = socket.assigns.game_pid |> TicTacToe.player_move(position)
-    push(socket, "game_state", game)
+    push(socket, "game_state", Map.from_struct(game))
     {:noreply, socket}
   end
 
   def handle_in("computer_move", _, socket) do
     game = socket.assigns.game_pid |> TicTacToe.computer_move()
-    push(socket, "game_state", game)
+    push(socket, "game_state", Map.from_struct(game))
     {:noreply, socket}
   end
 
