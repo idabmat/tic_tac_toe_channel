@@ -1,14 +1,15 @@
-defmodule TicTacToeChannel.Mixfile do
+defmodule TicTacToeChannel.MixProject do
   use Mix.Project
 
   def project do
     [
       app: :tic_tac_toe_channel,
-      version: "0.0.1",
-      elixir: "~> 1.4",
+      version: "0.1.0",
+      elixir: "~> 1.5",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -25,7 +26,7 @@ defmodule TicTacToeChannel.Mixfile do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_), do: ["lib"]
+  defp elixirc_paths(_),     do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -33,13 +34,16 @@ defmodule TicTacToeChannel.Mixfile do
   defp deps do
     [
       {:phoenix, "~> 1.4.0"},
-      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix_pubsub, "~> 1.1"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:tic_tac_toe, "~> 1.1.3"},
       {:plug_cowboy, "~> 2.0"},
-      {:cowboy, "~> 2.0"},
-      {:plug, "~> 1.7"}
+      {:tic_tac_toe, "~> 1.1.3"}
     ]
+  end
+
+  defp aliases do
+    []
   end
 end
