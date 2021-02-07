@@ -12,9 +12,10 @@ defmodule TicTacToeChannel.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: TicTacToeChannel.PubSub},
       # Start the Endpoint (http/https)
-      TicTacToeChannelWeb.Endpoint
+      TicTacToeChannelWeb.Endpoint,
       # Start a worker by calling: TicTacToeChannel.Worker.start_link(arg)
       # {TicTacToeChannel.Worker, arg},
+      TicTacToeChannel.GameSupervisor
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
