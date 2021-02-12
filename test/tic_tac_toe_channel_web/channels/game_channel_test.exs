@@ -2,73 +2,97 @@ defmodule TicTacToeChannelWeb.GameChannelTest do
   use TicTacToeChannelWeb.ChannelCase
 
   alias TicTacToeChannelWeb.GameChannel
+  alias TicTacToeChannel.GameSupervisor
 
   setup do
     {:ok, _, socket} =
-      socket()
+      TicTacToeChannelWeb.UserSocket
+      |> socket("user_id", %{})
       |> subscribe_and_join(GameChannel, "game:new")
 
-    {:ok, socket: socket}
+    %{socket: socket}
   end
 
   test "get game state", %{socket: socket} do
-    push(socket, "new_game")
-    push(socket, "get_state")
-    assert_push("game_state", %{board: board})
+    ref = push(socket, "new_game")
+    assert_reply ref, :ok
 
-    assert board == [
-             [nil, nil, nil],
-             [nil, nil, nil],
-             [nil, nil, nil]
-           ]
+    ref = push(socket, "get_state")
+    assert_reply ref, :ok
+
+    board = [
+      [nil, nil, nil],
+      [nil, nil, nil],
+      [nil, nil, nil]
+    ]
+    assert_push("game_state", %{board: ^board})
   end
 
   test "player makes a move", %{socket: socket} do
-    push(socket, "new_game")
-    push(socket, "player_move", 5)
+    ref = push(socket, "new_game")
+    assert_reply ref, :ok
+
+    ref = push(socket, "player_move", 5)
+    assert_reply ref, :ok
+
     assert_push("game_state", %{})
   end
 
   test "ask computer to move", %{socket: socket} do
-    push(socket, "new_game")
-    push(socket, "computer_move")
+    ref = push(socket, "new_game")
+    assert_reply ref, :ok
+
+    ref = push(socket, "computer_move")
+    assert_reply ref, :ok
+
     assert_push("game_state", %{})
   end
 
   test "get a new game", %{socket: socket} do
-    push(socket, "new_game", "original")
-    assert_push("game_state", %{board: board})
+    ref = push(socket, "new_game", "original")
+    assert_reply ref, :ok
 
-    assert board == [
-             [nil, nil, nil],
-             [nil, nil, nil],
-             [nil, nil, nil]
-           ]
+    board = [
+      [nil, nil, nil],
+      [nil, nil, nil],
+      [nil, nil, nil]
+    ]
+    assert_push("game_state", %{board: ^board, game_mode: :original})
   end
 
   test "get a new misere game", %{socket: socket} do
-    push(socket, "new_game", "misere")
-    assert_push("game_state", %{board: board, game_mode: game_mode})
+    ref = push(socket, "new_game", "misere")
+    assert_reply ref, :ok
 
-    assert board == [
-             [nil, nil, nil],
-             [nil, nil, nil],
-             [nil, nil, nil]
-           ]
-
-    assert game_mode == :misere
+    board = [
+      [nil, nil, nil],
+      [nil, nil, nil],
+      [nil, nil, nil]
+    ]
+    assert_push("game_state", %{board: ^board, game_mode: :misere})
   end
 
   test "get a new notakto game", %{socket: socket} do
-    push(socket, "new_game", "notakto")
-    assert_push("game_state", %{board: board, game_mode: game_mode})
+    ref = push(socket, "new_game", "notakto")
+    assert_reply ref, :ok
 
-    assert board == [
-             [nil, nil, nil],
-             [nil, nil, nil],
-             [nil, nil, nil]
-           ]
+    board = [
+      [nil, nil, nil],
+      [nil, nil, nil],
+      [nil, nil, nil]
+    ]
+    assert_push("game_state", %{board: ^board, game_mode: :notakto})
+  end
 
-    assert game_mode == :notakto
+  test "starting a new game when there was one in progress", %{socket: socket} do
+    ref = push(socket, "new_game")
+    assert_reply ref, :ok
+
+    assert %{active: 1} = Supervisor.count_children(GameSupervisor)
+
+    ref = push(socket, "new_game", "notakto")
+    assert_reply ref, :ok
+
+    assert %{active: 1} = DynamicSupervisor.count_children(GameSupervisor)
   end
 end
