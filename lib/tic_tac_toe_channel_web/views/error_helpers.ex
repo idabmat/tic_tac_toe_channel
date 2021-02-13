@@ -17,8 +17,8 @@ defmodule TicTacToeChannelWeb.ErrorHelpers do
     # need the message to be pluralized or not, this could be
     # written simply as:
     #
-    #     dngettext "errors", "1 file", "%{count} files", count
-    #     dgettext "errors", "is invalid"
+    #     dngettext("errors", "1 file", "%{count} files", count)
+    #     dgettext("errors", "is invalid")
     #
     if count = opts[:count] do
       Gettext.dngettext(TicTacToeChannelWeb.Gettext, "errors", msg, msg, count, opts)
