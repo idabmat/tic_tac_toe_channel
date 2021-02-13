@@ -43,6 +43,7 @@ defmodule TicTacToeChannelWeb.GameChannelTest do
       [nil, nil, nil],
       [nil, nil, nil]
     ]
+
     assert_push("game_state", %{board: ^board})
 
     ref = leave(socket)
@@ -84,6 +85,7 @@ defmodule TicTacToeChannelWeb.GameChannelTest do
       [nil, nil, nil],
       [nil, nil, nil]
     ]
+
     assert_push("game_state", %{board: ^board, game_mode: :original})
 
     ref = leave(socket)
@@ -99,6 +101,7 @@ defmodule TicTacToeChannelWeb.GameChannelTest do
       [nil, nil, nil],
       [nil, nil, nil]
     ]
+
     assert_push("game_state", %{board: ^board, game_mode: :misere})
 
     ref = leave(socket)
@@ -114,6 +117,7 @@ defmodule TicTacToeChannelWeb.GameChannelTest do
       [nil, nil, nil],
       [nil, nil, nil]
     ]
+
     assert_push("game_state", %{board: ^board, game_mode: :notakto})
 
     ref = leave(socket)

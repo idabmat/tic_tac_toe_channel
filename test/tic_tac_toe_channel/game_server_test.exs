@@ -9,11 +9,13 @@ defmodule TicTacToeChannel.GameServerTest do
 
   test "getting the current game state", %{pid: pid} do
     game = GameServer.state(pid)
+
     assert game.board == [
-      [nil, nil, nil],
-      [nil, nil, nil],
-      [nil, nil, nil]
-    ]
+             [nil, nil, nil],
+             [nil, nil, nil],
+             [nil, nil, nil]
+           ]
+
     assert game.current_player in [:computer, :player1]
     assert game.winner == nil
   end
@@ -26,21 +28,23 @@ defmodule TicTacToeChannel.GameServerTest do
       game = GameServer.computer_move(pid)
       assert game.current_player == :player1
       assert game.winner == nil
+
       assert game.board == [
-        [:computer, nil, nil],
-        [nil, :player1, nil],
-        [nil, nil, nil]
-      ]
+               [:computer, nil, nil],
+               [nil, :player1, nil],
+               [nil, nil, nil]
+             ]
     else
       GameServer.computer_move(pid)
       game = GameServer.player_move(pid, 2)
       assert game.current_player == :computer
       assert game.winner == nil
+
       assert game.board == [
-        [:computer, :player1, nil],
-        [nil, nil, nil],
-        [nil, nil, nil]
-      ]
+               [:computer, :player1, nil],
+               [nil, nil, nil],
+               [nil, nil, nil]
+             ]
     end
   end
 end
