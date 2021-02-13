@@ -17,6 +17,7 @@ jobs:
       with:
         elixir-version: '1.11.2' # Define the elixir version [required]
         otp-version: '23.1' # Define the OTP version [required]
+        experimental-otp: true
     - name: Run formatter
       run: mix format --check-formatted
   build:
@@ -29,6 +30,7 @@ jobs:
       with:
         elixir-version: '1.11.2' # Define the elixir version [required]
         otp-version: '23.1' # Define the OTP version [required]
+        experimental-otp: true
     - name: Restore dependencies cache
       uses: actions/cache@v2
       with:
@@ -56,6 +58,7 @@ jobs:
       with:
         elixir-version: '1.11.2' # Define the elixir version [required]
         otp-version: '23.1' # Define the OTP version [required]
+        experimental-otp: true
     - name: Restore dependencies cache
       uses: actions/cache@v2
       with:
@@ -81,6 +84,7 @@ jobs:
       with:
         elixir-version: '1.11.2' # Define the elixir version [required]
         otp-version: '23.1' # Define the OTP version [required]
+        experimental-otp: true
     - name: Restore dependencies cache
       uses: actions/cache@v2
       with:
@@ -106,6 +110,7 @@ jobs:
       with:
         elixir-version: '1.11.2' # Define the elixir version [required]
         otp-version: '23.1' # Define the OTP version [required]
+        experimental-otp: true
     - name: Restore dependencies cache
       uses: actions/cache@v2
       with:
