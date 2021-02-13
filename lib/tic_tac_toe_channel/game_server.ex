@@ -1,4 +1,8 @@
 defmodule TicTacToeChannel.GameServer do
+  @moduledoc """
+  Server to keep and modify game state
+  """
+
   use GenServer
 
   def start_link(opts \\ []) do
