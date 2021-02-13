@@ -1,4 +1,8 @@
 defmodule TicTacToeChannelWeb.Telemetry do
+  @moduledoc """
+  Metrics
+  """
+
   use Supervisor
   import Telemetry.Metrics
 

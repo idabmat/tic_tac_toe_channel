@@ -26,26 +26,32 @@ defmodule TicTacToeChannel.MixProject do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false},
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:gettext, "~> 0.11"},
+      {:jason, "~> 1.0"},
       {:phoenix, "~> 1.5.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:phoenix_live_dashboard, "~> 0.2.0"},
+      {:plug_cowboy, "~> 2.0"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
       {:tic_tac_toe, "~> 2.0.1"}
     ]
   end
 
   defp aliases do
-    []
+    [
+      lint: ["credo --strict"],
+      typecheck: ["dialyzer"]
+    ]
   end
 end

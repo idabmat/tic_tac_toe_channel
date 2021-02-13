@@ -1,4 +1,8 @@
 defmodule TicTacToeChannel.GameSupervisor do
+  @moduledoc """
+  Use dynamic supervisor to launch new game servers.
+  """
+
   use DynamicSupervisor
 
   def start_link(init_args \\ []) do

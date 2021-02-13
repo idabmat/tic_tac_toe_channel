@@ -1,8 +1,8 @@
 defmodule TicTacToeChannelWeb.GameChannelTest do
   use TicTacToeChannelWeb.ChannelCase
 
-  alias TicTacToeChannelWeb.GameChannel
   alias TicTacToeChannel.GameSupervisor
+  alias TicTacToeChannelWeb.GameChannel
 
   setup do
     {:ok, _, socket} =

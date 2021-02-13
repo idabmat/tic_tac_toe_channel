@@ -1,4 +1,8 @@
 defmodule TicTacToeChannelWeb.GameChannel do
+  @moduledoc """
+  Channel to start and interact with an existing game.
+  """
+
   use TicTacToeChannelWeb, :channel
   alias TicTacToeChannel.GameServer
   alias TicTacToeChannel.GameSupervisor
