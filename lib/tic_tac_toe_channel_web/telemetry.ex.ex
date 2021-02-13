@@ -10,8 +10,8 @@ defmodule TicTacToeChannelWeb.Telemetry do
   def init(_arg) do
     children = [
       {:telemetry_poller, measurements: periodic_measurements(), period: 10_000}
-      # Add reporters as children of your supervision tree.            
-      # {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}            
+      # Add reporters as children of your supervision tree.
+      # {Telemetry.Metrics.ConsoleReporter, metrics: metrics()}
     ]
 
     Supervisor.init(children, strategy: :one_for_one)
@@ -19,7 +19,7 @@ defmodule TicTacToeChannelWeb.Telemetry do
 
   def metrics do
     [
-      # Phoenix Metrics            
+      # Phoenix Metrics
       summary("phoenix.endpoint.stop.duration",
         unit: {:native, :millisecond}
       ),
@@ -28,14 +28,14 @@ defmodule TicTacToeChannelWeb.Telemetry do
         unit: {:native, :millisecond}
       ),
 
-      # Database Metrics            
+      # Database Metrics
       summary("tic_tac_toe_channel.repo.query.total_time", unit: {:native, :millisecond}),
       summary("tic_tac_toe_channel.repo.query.decode_time", unit: {:native, :millisecond}),
       summary("tic_tac_toe_channel.repo.query.query_time", unit: {:native, :millisecond}),
       summary("tic_tac_toe_channel.repo.query.queue_time", unit: {:native, :millisecond}),
       summary("tic_tac_toe_channel.repo.query.idle_time", unit: {:native, :millisecond}),
 
-      # VM Metrics            
+      # VM Metrics
       summary("vm.memory.total", unit: {:byte, :kilobyte}),
       summary("vm.total_run_queue_lengths.total"),
       summary("vm.total_run_queue_lengths.cpu"),
@@ -45,9 +45,9 @@ defmodule TicTacToeChannelWeb.Telemetry do
 
   defp periodic_measurements do
     [
-      # A module, function and arguments to be invoked periodically.            
-      # This function must call :telemetry.execute/3 and a metric must be added above.            
-      # {TicTacToeChannelWeb, :count_users, []}            
+      # A module, function and arguments to be invoked periodically.
+      # This function must call :telemetry.execute/3 and a metric must be added above.
+      # {TicTacToeChannelWeb, :count_users, []}
     ]
   end
 end
